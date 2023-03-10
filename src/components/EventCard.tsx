@@ -1,7 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const EventCard: React.FC<{
-  eventData: { date: { day: string; month: string }; title: string };
+  eventData: {
+    date: { day: string; month: string };
+    title: string;
+    id: number;
+  };
 }> = ({ eventData }) => {
   return (
     <div className="w-fit p-2 border-2 rounded-md">
@@ -11,9 +16,12 @@ const EventCard: React.FC<{
       </div>
       <div className="flex justify-between items-center gap-4">
         <h3>{eventData.title.toUpperCase()}</h3>
-        <button className="bg-orange-500 text-white px-5 py-2 rounded-3xl">
+        <Link
+          to={`/tickets/${eventData.id}`}
+          className="bg-orange-500 text-white px-5 py-2 rounded-3xl"
+        >
           GET TICKET
-        </button>
+        </Link>
       </div>
     </div>
   );

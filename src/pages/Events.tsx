@@ -9,6 +9,7 @@ const Tickets = () => {
         month: "May",
       },
       title: "Fifa world cup",
+      id: 1,
     },
   ];
 
