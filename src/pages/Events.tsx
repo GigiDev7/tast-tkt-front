@@ -1,5 +1,5 @@
-import React from "react";
 import EventCard from "../components/EventCard";
+import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 
 const Tickets = () => {
   const events = [
@@ -15,6 +15,15 @@ const Tickets = () => {
 
   return (
     <div>
+      <DateCalendar
+        onChange={(val: any) => console.log(new Date(val))}
+        views={["year", "month"]}
+        sx={{
+          border: "1px solid",
+          borderRadius: "15px",
+        }}
+        disablePast={true}
+      />
       {events.map((ev) => (
         <EventCard eventData={ev} />
       ))}
