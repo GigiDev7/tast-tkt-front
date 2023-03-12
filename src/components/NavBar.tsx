@@ -9,7 +9,9 @@ import useWindow from "../hooks/useModal";
 const NavBar: React.FC<{ showAuth: () => void }> = ({ showAuth }) => {
   const navigate = useNavigate();
   const userContext = useContext(UserContext);
-  const { isShown, toggleModal } = useWindow();
+  const { isShown, toggleModal, hideModal } = useWindow();
+
+  console.log(isShown);
 
   const handleShow = (type: "signin" | "signup") => {
     showAuth();
@@ -24,6 +26,7 @@ const NavBar: React.FC<{ showAuth: () => void }> = ({ showAuth }) => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     userContext.updateUser(null);
+    hideModal();
   };
 
   return (
