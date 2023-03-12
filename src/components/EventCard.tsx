@@ -1,18 +1,38 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+const months = [
+  "JAN",
+  "FEB",
+  "MAR",
+  "APR",
+  "MAY",
+  "JUN",
+  "JUL",
+  "AUG",
+  "SEP",
+  "OCT",
+  "NOV",
+  "DEC",
+];
+
+interface IEvent {
+  id: string;
+  title: string;
+  location: string;
+  date: string;
+  time: string;
+}
+
 const EventCard: React.FC<{
-  eventData: {
-    date: { day: string; month: string };
-    title: string;
-    id: number;
-  };
+  eventData: IEvent;
 }> = ({ eventData }) => {
   return (
     <div className="w-fit p-2 border-2 rounded-md">
       <div className="bg-black opacity-30 flex flex-col w-fit p-2 gap-2 text-white">
-        <p>{eventData.date.day.toUpperCase()}</p>
-        <p>{eventData.date.month.toUpperCase()}</p>
+        <p>{new Date(eventData.date).getDate()}</p>
+        <p>{months[new Date(eventData.date).getMonth()]}</p>
+        <p>{eventData.time}</p>
       </div>
       <div className="flex justify-between items-center gap-4">
         <h3>{eventData.title.toUpperCase()}</h3>
