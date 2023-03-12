@@ -109,6 +109,7 @@ const Auth: React.FC<{ hideAuth: () => void; isAuthShown: boolean }> = ({
         });
         userContext.updateUser(data.user);
         localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
         hideAuth();
         setParams(undefined);
       } catch (error: any) {
