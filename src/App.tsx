@@ -7,6 +7,8 @@ import SingleEvent from "./pages/SingleEvent";
 import useModal from "./hooks/useModal";
 import Auth from "./components/Auth";
 import UserContext from "./context/userContext";
+import Admin from "./pages/Admin";
+import AdminGuard from "./guards/AdminGuard";
 
 function App() {
   const { isShown, hideModal, showModal } = useModal();
@@ -27,6 +29,14 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/events" element={<Tickets />} />
         <Route path="/tickets/:eventId" element={<SingleEvent />} />
+        <Route
+          path="/admin"
+          element={
+            <AdminGuard>
+              <Admin />
+            </AdminGuard>
+          }
+        />
       </Routes>
     </div>
   );
