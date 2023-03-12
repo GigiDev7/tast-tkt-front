@@ -21,7 +21,7 @@ const EventCard: React.FC<{
   eventData: IEvent;
 }> = ({ eventData }) => {
   return (
-    <div className="w-fit p-2 border-2 rounded-md">
+    <div className="w-[500px] p-2 border-2 rounded-md">
       <div className="bg-black opacity-30 flex flex-col w-fit p-2 gap-2 text-white">
         <p>{new Date(eventData.date).getDate()}</p>
         <p>{months[new Date(eventData.date).getMonth()]}</p>

@@ -37,7 +37,7 @@ const Tickets = () => {
         }}
         disablePast={true}
       />
-      <div className="mt-12">
+      <div className="mt-12 flex gap-4">
         {events &&
           events.length > 0 &&
           events.map((ev) => <EventCard key={ev._id} eventData={ev} />)}
