@@ -11,8 +11,6 @@ const NavBar: React.FC<{ showAuth: () => void }> = ({ showAuth }) => {
   const userContext = useContext(UserContext);
   const { isShown, toggleModal, hideModal } = useWindow();
 
-  console.log(isShown);
-
   const handleShow = (type: "signin" | "signup") => {
     showAuth();
     if (type == "signin") {

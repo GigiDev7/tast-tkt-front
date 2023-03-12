@@ -5,7 +5,7 @@ import axios from "axios";
 import { BASE_URL } from "../config";
 
 interface IEvent {
-  id: string;
+  _id: string;
   title: string;
   location: string;
   date: string;
@@ -40,7 +40,7 @@ const Tickets = () => {
       <div className="mt-12">
         {events &&
           events.length > 0 &&
-          events.map((ev) => <EventCard key={ev.id} eventData={ev} />)}
+          events.map((ev) => <EventCard key={ev._id} eventData={ev} />)}
         {events && events.length == 0 && <p>Events not found!</p>}
       </div>
     </div>

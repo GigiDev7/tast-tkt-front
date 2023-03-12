@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { IEvent } from "../shared/interfaces";
 
 const months = [
   "JAN",
@@ -16,14 +17,6 @@ const months = [
   "DEC",
 ];
 
-interface IEvent {
-  id: string;
-  title: string;
-  location: string;
-  date: string;
-  time: string;
-}
-
 const EventCard: React.FC<{
   eventData: IEvent;
 }> = ({ eventData }) => {
@@ -37,7 +30,7 @@ const EventCard: React.FC<{
       <div className="flex justify-between items-center gap-4">
         <h3>{eventData.title.toUpperCase()}</h3>
         <Link
-          to={`/tickets/${eventData.id}`}
+          to={`/tickets/${eventData._id}`}
           className="bg-orange-500 text-white px-5 py-2 rounded-3xl"
         >
           GET TICKET

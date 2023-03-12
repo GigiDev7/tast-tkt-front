@@ -1,11 +1,5 @@
 import React, { createContext, useState } from "react";
-
-interface IUser {
-  firstname: string;
-  lastname: string;
-  phone: string;
-  email: string;
-}
+import { IUser } from "../shared/interfaces";
 
 const UserContext = createContext<{
   user: null | IUser;
