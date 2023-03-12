@@ -1,9 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BsTelephoneFill } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
 
-const NavBar = () => {
+const NavBar: React.FC<{ showAuth: () => void }> = ({ showAuth }) => {
+  const navigate = useNavigate();
+
+  const handleShow = (type: "signin" | "signup") => {
+    showAuth();
+    if (type == "signin") {
+      navigate("?auth=login");
+    } else {
+      navigate("?auth=register");
+    }
+  };
+
   return (
     <div className="flex flex-col my-8 gap-3">
       <div className="flex justify-between items-center">
@@ -18,8 +29,8 @@ const NavBar = () => {
           </div>
         </div>
         <div className="flex gap-4">
-          <button>SIGN IN</button>
-          <button>SIGN UP</button>
+          <button onClick={() => handleShow("signin")}>SIGN IN</button>
+          <button onClick={() => handleShow("signup")}>SIGN UP</button>
         </div>
       </div>
       <div className="flex justify-between border-b-[1px] pb-8">
