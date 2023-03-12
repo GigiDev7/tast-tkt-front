@@ -4,10 +4,12 @@ import { BsTelephoneFill } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
 import { BiUserCircle } from "react-icons/bi";
 import UserContext from "../context/userContext";
+import useWindow from "../hooks/useModal";
 
 const NavBar: React.FC<{ showAuth: () => void }> = ({ showAuth }) => {
   const navigate = useNavigate();
   const userContext = useContext(UserContext);
+  const { isShown, toggleModal } = useWindow();
 
   const handleShow = (type: "signin" | "signup") => {
     showAuth();
@@ -16,6 +18,12 @@ const NavBar: React.FC<{ showAuth: () => void }> = ({ showAuth }) => {
     } else {
       navigate("?auth=register");
     }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    userContext.updateUser(null);
   };
 
   return (
@@ -38,8 +46,8 @@ const NavBar: React.FC<{ showAuth: () => void }> = ({ showAuth }) => {
               <button onClick={() => handleShow("signup")}>SIGN UP</button>
             </>
           ) : (
-            <>
-              <div className="flex items-center gap-1">
+            <div className="relative">
+              <button onClick={toggleModal} className="flex items-center gap-1">
                 <BiUserCircle className="text-xl" />
                 <p>
                   <span className="capitalize font-medium">
@@ -49,8 +57,21 @@ const NavBar: React.FC<{ showAuth: () => void }> = ({ showAuth }) => {
                     {userContext.user.lastname}
                   </span>
                 </p>
-              </div>
-            </>
+              </button>
+              {isShown && (
+                <div className="absolute flex flex-col items-start gap-3 py-4 bg-white shadow-xl rounded-md top-8 -left-14 w-40 z-20">
+                  <button className="hover:bg-gray-200 w-full text-start pl-2 py-2">
+                    Profile
+                  </button>
+                  <button
+                    onClick={handleLogout}
+                    className="hover:bg-gray-200 w-full text-start pl-2 py-2"
+                  >
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
           )}
         </div>
       </div>
