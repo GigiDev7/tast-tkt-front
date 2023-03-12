@@ -9,6 +9,7 @@ import Auth from "./components/Auth";
 import UserContext from "./context/userContext";
 import Admin from "./pages/Admin";
 import AdminGuard from "./guards/AdminGuard";
+import Search from "./pages/Search";
 
 function App() {
   const { isShown, hideModal, showModal } = useModal();
@@ -27,6 +28,7 @@ function App() {
       {isShown && <Auth isAuthShown={isShown} hideAuth={hideModal} />}
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/search" element={<Search />} />
         <Route path="/events" element={<Tickets />} />
         <Route path="/tickets/:eventId" element={<SingleEvent />} />
         <Route
